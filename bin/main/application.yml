@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: zuulservice
+server: 
+  port: 8765
+info:
+  application:
+    name: zuulservice
+    version: 1.0
+    description: Yasen Zuul Service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.vlue}}
+
+zuul:
+  routes:
+    userservice: /userservice/**
